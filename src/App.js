@@ -1,25 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Route, Link, Routes } from "react-router-dom";
+import { Layout, Typography, Space } from "antd";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+import {
+  Exchanges,
+  Homepage,
+  News,
+  Cryptocurrencies,
+  CryptoDetails,
+  Navbar,
+} from "./components";
+import "./App.css";
+
+const App = () => (
+  <div className="app">
+    <div className="navbar">
+      <Navbar />
     </div>
-  );
-}
+    <div className="main">
+      <Layout>
+        <div className="routes">
+          <Routes>
+            <Route exact path="/" element={<Homepage />}></Route>
+            <Route exact path="/exchanges" element={<Exchanges />}></Route>
+            <Route
+              exact
+              path="/cryptocurrencies"
+              element={<Cryptocurrencies />}
+            ></Route>
+            <Route
+              exact
+              path="/crypto/:coinId"
+              element={<CryptoDetails />}
+            ></Route>
+            
+          </Routes>
+        </div>
+      </Layout>
+      <div className="footer">
+        <Typography.Title
+          level={5}
+          style={{ color: "white", textAlign: "center" }}
+        >
+          Copyright © 2024
+          <Link to="/"> CryptoExplore Inc.</Link> <br />
+          All Rights Reserved.
+        </Typography.Title>
+        
+      </div>
+    </div>
+  </div>
+);
 
 export default App;
